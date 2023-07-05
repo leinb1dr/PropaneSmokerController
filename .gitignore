@@ -1,0 +1,9 @@
+# Ignore generated files
+*.js.map
+*.d.ts
+
+# Ignore build output
+dist
+
+# Ignore node_modules
+node_modules
