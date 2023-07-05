@@ -7,5 +7,6 @@
   connection: local
   roles:
     - nodejs
+    - docker
 
 
