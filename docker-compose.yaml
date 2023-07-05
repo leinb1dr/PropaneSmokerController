@@ -1,0 +1,33 @@
+version: "3"
+services:
+  graphite:
+    image: easypi/graphite-arm
+    restart: always
+    ports:
+      - "2003:2003"
+      - "2004:2004"
+      - "7002:7002"
+      - "8080:8080"
+      - "9001:9001"
+    volumes:
+      - "/data/graphite/storage/whisper/:/opt/graphite/storage/whisper"
+      - "/data/graphite/storage/log/:/opt/graphite/storage/log"
+      - "/data/graphite/storage/log/webapp/:/opt/graphite/storage/log/webapp"
+    networks:
+      - webnet
+  grafana:
+    image: easypi/grafana-arm
+    restart: always
+    ports:
+      - "3000:3000"
+    environment:
+      - GF_AUTH_ANONYMOUS_ENABLED=true
+    volumes:
+      - "/data/grafana/lib:/var/lib/grafana"
+      # uncomment if you want to mount your own config files
+      #- "/data/grafana/etc:/etc/grafana"
+    networks:
+      - webnet
+
+networks:
+  webnet:
