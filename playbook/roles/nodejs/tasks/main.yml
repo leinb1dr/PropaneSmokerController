@@ -1,0 +1,20 @@
+---
+# tasks file for nodejs
+- name: Download node source
+  get_url:
+    url: https://deb.nodesource.com/setup_18.x
+    dest: /tmp/setup.sh
+    mode: 'u+rwx'
+  register: download
+- name: Add node source
+  shell: /tmp/setup.sh
+  when: download.changed
+  become: true
+- name: Remove the setup.sh
+  file:
+    path: /tmp/setup.sh
+    state: absent
+- name: Install node
+  ansible.builtin.apt:
+    name: nodejs
+    state: present

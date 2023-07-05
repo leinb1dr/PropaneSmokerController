@@ -1,0 +1,11 @@
+# ---
+# - name: Smoker
+#   hosts: pis
+---
+- name: Local Smoker
+  hosts: 127.0.0.1
+  connection: local
+  roles:
+    - nodejs
+
+
